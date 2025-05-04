@@ -6,6 +6,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import paymentRoutes from "./routes/paymentRoutes.js";
 
+
 dotenv.config();
 
 const app = express();
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 
 // MongoDB Connection
+
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
@@ -31,4 +33,4 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Routes
 app.use("/", paymentRoutes);
 
-server.listen(port, () => console.log(`Server running on port ${port}`));
+server.listen(port, () => console.log(`Server running on  port ${port}`));

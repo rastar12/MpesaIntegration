@@ -26,7 +26,8 @@ export const stkPush = async (req, res) => {
 
   if (!phone.match(/^2547\d{8}$/) || !amount || amount <= 0) {
     return res.status(400).json({ error: "Invalid phone number or amount" });
-  }
+  };
+
 
   const now = new Date().toLocaleString("en-US", { timeZone: "Africa/Nairobi" });
   const timestamp = new Date(now)
@@ -66,7 +67,7 @@ export const stkPush = async (req, res) => {
   } catch (error) {
     console.error("STK Push Error:", error.response?.data || error.message);
     res.status(400).json({ error: "STK Push failed" });
-  }
+  };
 };
 
 export const stkCallback = async (req, res) => {
@@ -76,7 +77,7 @@ export const stkCallback = async (req, res) => {
   if (!result) {
     console.error("Invalid callback data:", req.body);
     return res.status(400).json({ error: "Invalid callback data" });
-  }
+  };
 
   const { MerchantRequestID, CheckoutRequestID, ResultCode, ResultDesc, CallbackMetadata } = result;
 
@@ -96,7 +97,9 @@ export const stkCallback = async (req, res) => {
     transactionData.transactionDate = data.find((i) => i.Name === "TransactionDate")?.Value;
     console.log("Transaction Success:", transactionData);
   } else {
+
     console.log("Transaction Failed:", ResultDesc);
+
   }
 
   try {
